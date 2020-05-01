@@ -1,7 +1,6 @@
 package com.training.ecommerce.facade.user;
 
 import com.training.ecommerce.data.UserData;
-import com.training.ecommerce.model.UserModel;
 
 public interface UserFacade {
 

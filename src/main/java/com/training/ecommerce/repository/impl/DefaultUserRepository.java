@@ -5,9 +5,6 @@ import com.training.ecommerce.repository.UserRepository;
 import com.training.ecommerce.repositoryjpa.UserRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.CollectionUtils;
-
-import java.util.List;
 
 @Repository
 public class DefaultUserRepository implements UserRepository {
