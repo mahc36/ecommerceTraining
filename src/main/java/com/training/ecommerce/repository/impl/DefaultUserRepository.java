@@ -5,7 +5,9 @@ import com.training.ecommerce.repository.UserRepository;
 import com.training.ecommerce.repositoryjpa.UserRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 @Repository
 public class DefaultUserRepository implements UserRepository {
@@ -14,22 +16,23 @@ public class DefaultUserRepository implements UserRepository {
     UserRepositoryJPA userRepositoryJPA;
 
     @Override
-    public void createUser(UserModel user) {
+    public void createUser(final UserModel user) {
         getUserRepositoryJPA().save(user);
     }
 
     @Override
-    public UserModel findUserByEmail(String email) {
-        return userRepositoryJPA.findById(email).orElse(null);
+    public UserModel findUserByEmail(final String email) {
+        List<UserModel> byEmail = userRepositoryJPA.findByEmail(email);
+        return CollectionUtils.isEmpty(byEmail) ? null : byEmail.get(0);
     }
 
     @Override
-    public void updateUser(UserModel user) {
-        getUserRepositoryJPA().save(user);
+    public void updateUser(final UserModel user) {
+        getUserRepositoryJPA().saveAndFlush(user);
     }
 
     @Override
-    public void deleteUser(UserModel user) {
+    public void deleteUser(final UserModel user) {
         getUserRepositoryJPA().delete(user);
     }
 

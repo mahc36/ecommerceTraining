@@ -16,7 +16,10 @@ public class DefaultUserService implements UserService {
 
     @Override
     public void createUser(final UserModel user) {
-        if(Objects.nonNull(user)){
+
+        UserModel userByEmail = getUserRepository().findUserByEmail(user.getEmail());
+
+        if(Objects.isNull(userByEmail)){
             getUserRepository().createUser(user);
         }
     }
@@ -31,7 +34,10 @@ public class DefaultUserService implements UserService {
 
     @Override
     public void updateUser(final UserModel user) {
-        if(Objects.nonNull(user)){
+
+        UserModel userByEmail = getUserRepository().findUserByEmail(user.getEmail());
+        if(Objects.nonNull(userByEmail)){
+            user.setId(userByEmail.getId());
             getUserRepository().updateUser(user);
         }
     }
@@ -45,9 +51,5 @@ public class DefaultUserService implements UserService {
 
     public UserRepository getUserRepository() {
         return userRepository;
-    }
-
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
     }
 }

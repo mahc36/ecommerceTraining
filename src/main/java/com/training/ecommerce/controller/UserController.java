@@ -15,8 +15,19 @@ public class UserController {
     private UserFacade userFacade;
 
     @RequestMapping(value= ControllerConstants.User.CREATE ,method = RequestMethod.POST)
-    public void createUser(@RequestBody UserData user){
+    public void createUser(@RequestBody final UserData user){
         getUserFacade().createUser(user);
+    }
+
+    @RequestMapping(value= ControllerConstants.User.UPDATE ,method = RequestMethod.POST)
+    public void updateUser(@RequestBody final UserData user){
+        getUserFacade().updateUser(user);
+    }
+
+    @RequestMapping(value= ControllerConstants.User.FIND_BY_EMAIL ,method = RequestMethod.GET)
+    @ResponseBody
+    public UserData findUserByEmail(@RequestParam(value = "email") final String email){
+        return getUserFacade().findUserByEmail(email);
     }
 
     public UserFacade getUserFacade() {
