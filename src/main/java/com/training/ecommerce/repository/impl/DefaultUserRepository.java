@@ -22,8 +22,7 @@ public class DefaultUserRepository implements UserRepository {
 
     @Override
     public UserModel findUserByEmail(final String email) {
-        List<UserModel> byEmail = userRepositoryJPA.findByEmail(email);
-        return CollectionUtils.isEmpty(byEmail) ? null : byEmail.get(0);
+        return userRepositoryJPA.findByEmail(email);
     }
 
     @Override
