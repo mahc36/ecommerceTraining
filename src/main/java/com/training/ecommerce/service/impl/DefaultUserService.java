@@ -6,6 +6,7 @@ import com.training.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -47,6 +48,11 @@ public class DefaultUserService implements UserService {
         if(Objects.nonNull(user)){
             getUserRepository().deleteUser(user);
         }
+    }
+
+    @Override
+    public List<UserModel> findAllUsers() {
+        return getUserRepository().findAllUsers();
     }
 
     public UserRepository getUserRepository() {

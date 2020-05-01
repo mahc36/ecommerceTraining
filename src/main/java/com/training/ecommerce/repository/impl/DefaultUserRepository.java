@@ -6,6 +6,8 @@ import com.training.ecommerce.repositoryjpa.UserRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class DefaultUserRepository implements UserRepository {
 
@@ -30,6 +32,11 @@ public class DefaultUserRepository implements UserRepository {
     @Override
     public void deleteUser(final UserModel user) {
         getUserRepositoryJPA().delete(user);
+    }
+
+    @Override
+    public List<UserModel> findAllUsers() {
+        return getUserRepositoryJPA().findAll();
     }
 
     public UserRepositoryJPA getUserRepositoryJPA() {

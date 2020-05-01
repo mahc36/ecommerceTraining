@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -52,6 +53,11 @@ public class DefaultUserFacade implements UserFacade {
         Assert.notNull(user,  user.getClass() + " cannot be empty");
 
         getUserService().deleteUser(getUserConverter().convert2Model(user));
+    }
+
+    @Override
+    public List<UserData> findAllUsers() {
+        return getUserConverter().convertAll2Data(getUserService().findAllUsers());
     }
 
     public UserService getUserService() {

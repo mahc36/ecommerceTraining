@@ -2,6 +2,8 @@ package com.training.ecommerce.facade.user;
 
 import com.training.ecommerce.data.UserData;
 
+import java.util.List;
+
 public interface UserFacade {
 
     void createUser(UserData user);
@@ -11,5 +13,7 @@ public interface UserFacade {
     void updateUser(UserData user);
 
     void deleteUser(UserData user);
+
+    List<UserData> findAllUsers();
 
 }
