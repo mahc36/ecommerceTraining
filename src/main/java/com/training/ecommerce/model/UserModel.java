@@ -25,6 +25,7 @@ public class UserModel {
     private Gender gender;
 
     @Column
+    @Temporal(TemporalType.DATE)
     private Date bornDate;
 
     public int getId() {
