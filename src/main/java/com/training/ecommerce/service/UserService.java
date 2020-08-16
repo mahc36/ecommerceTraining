@@ -1,12 +1,13 @@
 package com.training.ecommerce.service;
 
+import com.training.ecommerce.exception.DuplicatedUserException;
 import com.training.ecommerce.model.UserModel;
 
 import java.util.List;
 
 public interface UserService {
 
-    void createUser(UserModel user);
+    UserModel createUser(UserModel user) throws DuplicatedUserException;
 
     UserModel findUserByEmail(String email);
 

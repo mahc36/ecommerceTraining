@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserRepository {
 
-    void createUser(UserModel user);
+    UserModel createUser(UserModel user);
 
     UserModel findUserByEmail(String email);
 

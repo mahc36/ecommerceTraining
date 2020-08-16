@@ -1,5 +1,6 @@
 package com.training.ecommerce.service.impl;
 
+import com.training.ecommerce.exception.DuplicatedUserException;
 import com.training.ecommerce.model.UserModel;
 import com.training.ecommerce.repository.UserRepository;
 import com.training.ecommerce.service.UserService;
@@ -16,12 +17,15 @@ public class DefaultUserService implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public void createUser(final UserModel user) {
+    public UserModel createUser(final UserModel user) throws DuplicatedUserException {
 
         UserModel userByEmail = getUserRepository().findUserByEmail(user.getEmail());
 
         if(Objects.isNull(userByEmail)){
-            getUserRepository().createUser(user);
+            return getUserRepository().createUser(user);
+        }
+        else {
+            throw new DuplicatedUserException(user.getEmail() + " has been already taken");
         }
     }
 

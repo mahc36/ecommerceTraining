@@ -2,6 +2,7 @@ package com.training.ecommerce.controller;
 
 
 import com.training.ecommerce.data.UserData;
+import com.training.ecommerce.exception.DuplicatedUserException;
 import com.training.ecommerce.facade.user.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class UserController {
     private UserFacade userFacade;
 
     @RequestMapping(value= ControllerConstants.User.CREATE ,method = RequestMethod.POST)
-    public void createUser(@RequestBody final UserData user){
-        getUserFacade().createUser(user);
+    public UserData createUser(@RequestBody final UserData user) throws DuplicatedUserException {
+        return getUserFacade().createUser(user);
     }
 
     @RequestMapping(value= ControllerConstants.User.UPDATE ,method = RequestMethod.POST)

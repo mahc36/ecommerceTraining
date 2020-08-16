@@ -1,6 +1,7 @@
 package com.training.ecommerce.facade.user.impl;
 
 import com.training.ecommerce.data.UserData;
+import com.training.ecommerce.exception.DuplicatedUserException;
 import com.training.ecommerce.facade.Converter;
 import com.training.ecommerce.facade.user.UserFacade;
 import com.training.ecommerce.model.UserModel;
@@ -22,10 +23,11 @@ public class DefaultUserFacade implements UserFacade {
     private Converter<UserData, UserModel> userConverter;
 
     @Override
-    public void createUser(final UserData user) {
+    public UserData createUser(final UserData user) throws DuplicatedUserException {
         Assert.notNull(user, user.getClass() + " cannot be empty");
 
-        getUserService().createUser(getUserConverter().convert2Model(user));
+        UserModel createdUser = getUserService().createUser(getUserConverter().convert2Model(user));
+        return getUserConverter().convert2Data(createdUser);
     }
 
     @Override

@@ -15,8 +15,8 @@ public class DefaultUserRepository implements UserRepository {
     UserRepositoryJPA userRepositoryJPA;
 
     @Override
-    public void createUser(final UserModel user) {
-        getUserRepositoryJPA().save(user);
+    public UserModel createUser(final UserModel user) {
+        return getUserRepositoryJPA().save(user);
     }
 
     @Override

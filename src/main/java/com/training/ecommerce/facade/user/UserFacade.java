@@ -1,12 +1,13 @@
 package com.training.ecommerce.facade.user;
 
 import com.training.ecommerce.data.UserData;
+import com.training.ecommerce.exception.DuplicatedUserException;
 
 import java.util.List;
 
 public interface UserFacade {
 
-    void createUser(UserData user);
+    UserData createUser(UserData user) throws DuplicatedUserException;
 
     UserData findUserByEmail(String email);
 
