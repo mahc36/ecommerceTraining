@@ -12,7 +12,7 @@ import java.util.List;
 public class DefaultUserRepository implements UserRepository {
 
     @Autowired
-    UserRepositoryJPA userRepositoryJPA;
+    private UserRepositoryJPA userRepositoryJPA;
 
     @Override
     public UserModel createUser(final UserModel user) {

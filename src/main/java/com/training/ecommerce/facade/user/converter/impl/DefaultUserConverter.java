@@ -3,6 +3,7 @@ package com.training.ecommerce.facade.user.converter.impl;
 import com.training.ecommerce.data.UserData;
 import com.training.ecommerce.facade.user.converter.UserConverter;
 import com.training.ecommerce.model.UserModel;
+import com.training.ecommerce.util.UtilityKt;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -17,6 +18,7 @@ public class DefaultUserConverter implements UserConverter {
         Assert.notNull(userModel, "model cannot be empty");
         UserData userData = new UserData();
 
+        userData.setName(UtilityKt.addEndingName(userModel.getName(), " nothing more"));
         userData.setEmail(userModel.getEmail());
         userData.setBornDate(userModel.getBornDate());
         userData.setGender(userModel.getGender());
